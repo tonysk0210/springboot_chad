@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class DemoApplication {
 
@@ -19,7 +21,62 @@ public class DemoApplication {
         return runner -> {
             //createStudent(studentDAO);
             createMultipleStudent(studentDAO);
+            //readStudent(studentDAO);
+            //readAllStudents(studentDAO);
+            //readByLastName(studentDAO);
+            //updateStudent(studentDAO);
+            //deleteStudent(studentDAO);
+            //deleteAllStudents(studentDAO);
         };
+    }
+
+    private void deleteAllStudents(StudentDAO studentDAO) {
+        System.out.println("Deleting all students...");
+        int numRowsDeleted = studentDAO.deleteAll();
+        System.out.println("numRowsDeleted: " + numRowsDeleted);
+    }
+
+    private void deleteStudent(StudentDAO studentDAO) {
+        System.out.println("Deleting student object...");
+        studentDAO.delete(1);
+    }
+
+    private void updateStudent(StudentDAO studentDAO) {
+        //retrieve student based on id
+        System.out.println("Getting student object...");
+        Student student = studentDAO.findById(1);
+
+        //change last name to Test
+        student.setLastName("ZZZ");
+
+        //update the student
+        studentDAO.update(student);
+
+        //display updated student
+        System.out.println(student);
+    }
+
+    private void readByLastName(StudentDAO studentDAO) {
+        System.out.println("Retrieving student object by last name...");
+        List<Student> students = studentDAO.findByLastName("Doe");
+        for (var student : students) {
+            System.out.println(student);
+        }
+    }
+
+    private void readAllStudents(StudentDAO studentDAO) {
+        System.out.println("Reading all students...");
+        List<Student> students = studentDAO.findAll();
+
+        for (var student : students) {
+            System.out.println(student);
+        }
+    }
+
+    private void readStudent(StudentDAO studentDAO) {
+        System.out.println("Retrieving student object...");
+        Student student = studentDAO.findById(1); //Student(id=1, firstName=Paul, lastName=Doe, email=Paul@luv2code.com)
+        System.out.println(student);
     }
 
     private void createMultipleStudent(StudentDAO studentDAO) {

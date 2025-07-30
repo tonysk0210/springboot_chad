@@ -20,7 +20,7 @@ public class DemoApplication {
     public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
         return runner -> {
             //createStudent(studentDAO);
-            createMultipleStudent(studentDAO);
+            //createMultipleStudent(studentDAO);
             //readStudent(studentDAO);
             //readAllStudents(studentDAO);
             //readByLastName(studentDAO);

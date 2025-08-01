@@ -1,5 +1,6 @@
 package com.example.demo.employee;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,6 +23,4 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String email;
-
-
 }
